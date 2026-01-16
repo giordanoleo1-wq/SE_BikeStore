@@ -149,9 +149,9 @@ class Model:
     def get_percorso_ottimo(self, lunghezza, start, finish):
         self.percorso_ottimo= []
         self.costo_ottimo= 0
-        set_archi_usati = {start}
+        set_nodi_usati = {start}
 
-        self.ricorsione(start, [start], 0, set_archi_usati, lunghezza, finish)
+        self.ricorsione(start, [start], 0, set_nodi_usati, lunghezza, finish)
         return self.percorso_ottimo, self.costo_ottimo
 
 
@@ -160,7 +160,7 @@ class Model:
 
 
 
-    def ricorsione(self, start, sequenza_parziale, costo_parziale, set_archi_usati, lunghezza, finish):
+    def ricorsione(self, start, sequenza_parziale, costo_parziale, set_nodi_usati, lunghezza, finish):
         if len(sequenza_parziale)> lunghezza:
             return
 
@@ -172,14 +172,14 @@ class Model:
 
 
         for v in self.G.neighbors(start):
-            if v not in set_archi_usati:
+            if v not in set_nodi_usati:
                 peso= self.G[start][v]['peso']
                 sequenza_parziale.append(v)
-                set_archi_usati.add(v)
+                set_nodi_usati.add(v)
                 self.ricorsione(v, sequenza_parziale, costo_parziale+peso, set_archi_usati, lunghezza, finish)
 
                 sequenza_parziale.pop()
-                set_archi_usati.remove(v)
+                set_nodi_usati.remove(v)
 
 
 
