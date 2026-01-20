@@ -176,7 +176,7 @@ class Model:
                 peso= self.G[start][v]['peso']
                 sequenza_parziale.append(v)
                 set_nodi_usati.add(v)
-                self.ricorsione(v, sequenza_parziale, costo_parziale+peso, set_archi_usati, lunghezza, finish)
+                self.ricorsione(v, sequenza_parziale, costo_parziale+peso, set_nodi_usati, lunghezza, finish)
 
                 sequenza_parziale.pop()
                 set_nodi_usati.remove(v)
